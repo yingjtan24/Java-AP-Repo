@@ -1,7 +1,6 @@
 import java.awt.*;
 import javax.swing.JPanel;
 
-
 public class GraphicsPanel extends JPanel {
 
     Graphics2D g2; 
@@ -43,8 +42,7 @@ public class GraphicsPanel extends JPanel {
         } 
         //createGrid(g2); 
     
-        
-
+    
         private void rectGrid(int rows, int cols){
 
             Rectangle[][] rGrid = new Rectangle[rows][cols]; 
@@ -70,7 +68,6 @@ public class GraphicsPanel extends JPanel {
             }
         drawPatterns(rGrid);
         }
-    
 
         /*Circle[][] cGrid = new Circle[rows][cols]; 
         for(int row = 0; row < cGrid.length; row++) {
@@ -88,6 +85,5 @@ public class GraphicsPanel extends JPanel {
                     grid[row][col].draw(g2);
                 }
             }
-        
         }
     } // end paintComponent()
