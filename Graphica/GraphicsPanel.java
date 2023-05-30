@@ -68,6 +68,20 @@ public class GraphicsPanel extends JPanel {
             }
         drawPatterns(rGrid);
         }
+    
+        private void myPattern(int rows, int cols) {
+            Rectangle[][] rGrid = new Rectangle[rows][cols];
+            for (int row = 0; row <grid.length; row++){
+                for (int col = 0; col < grid[0].length; col ++){
+                    if (row == col || row == (rows-1)-col) {
+                        grid[row][col] = new Rectangle(50+row*60, 50+ col*60, Color.BLUE, Color.WHITE, 50, 50);
+                    }else {
+                        grid[row][col] = new Rectangle(50+row*60, 50+ col*60, Color.RED, Color.WHITE, 50, 50);
+                    }
+                }
+            }
+        drawPatterns(rGrid);
+        }
 
         /*Circle[][] cGrid = new Circle[rows][cols]; 
         for(int row = 0; row < cGrid.length; row++) {
