@@ -1,1 +1,115 @@
+int sensorPin = 0;    // The potentiometer is connected to
+const int buzzerPin = 2;
+const int buttonPin = 12;
+const int led1 = 5;
+const int led2 = 6;
+const int led3 = 7;
+const int led4 = 8;
+const int led5 = 9;
+const int led6_red = 13;
+const int led6_green = 11;
+const int led6_blue = 10;
+const int songLength = 102;
+char notes[] = "aaaaaaabf     aaaaafabf       fedcBdefafeA qzabfbf aaaaaaabf     aaaaafabf       fedcBdefafeA qzabfbf ";
+int beats[] = {1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 2, 1, 1, 4, 1, 5, 1, 2, 1, 5, 5, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 2, 1, 1, 4, 1, 5, 1, 2, 1, 5, 5};
+int tempo = 150;
+void setup()
+{ 
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(buttonPin, INPUT);
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode(led4, OUTPUT);
+  pinMode(led5, OUTPUT);
+  pinMode(led6_red, OUTPUT);
+  pinMode(led6_green, OUTPUT);
+  pinMode(led6_blue, OUTPUT);
+ 
+}
+
+void loop()
+{
+  int buttonState;
+  buttonState = digitalRead(buttonPin);
+  int sensorValue;
+
+  int i, duration;
+ // if (buttonState == LOW ){
+ //   char notes[] = "eegecde eegecde ddedgfd ddedgfd eegecde eegecde ddedgfd ddedgfd ";
+   // int beats[] = {8, 8, 4, 8, 4, 4, 2, 8, 8, 8, 4, 8, 4, 4, 2, 8, 4, 4, 4, 4, 4, 4, 2, 8, 4, 4, 4, 4, 4, 4, 2, 8, 8, 8, 4, 8, 4, 4, 2, 8, 8, 8, 4, 8, 4, 4, 2, 8, 4, 4, 4, 4, 4, 4, 2, 8, 4, 4, 4, 4, 4, 4, 2, 8};
+
+
+  for (i = 0; i < songLength; i++) // step through the song arrays
+  {
+    sensorValue = analogRead(sensorPin);    
+    duration = beats[i] * tempo; //* sensorValue;  // length of note/rest in ms
+
+    if (notes[i] == ' ')          // is this a rest?
+    {
+      digitalWrite(led1, LOW);
+      digitalWrite(led2, LOW);
+      digitalWrite(led3, LOW);
+      digitalWrite(led4, LOW);
+      digitalWrite(led5, LOW);
+      digitalWrite(led6_red, LOW);
+      digitalWrite(led6_green, LOW);
+      digitalWrite(led6_blue, LOW);
+
+      delay(duration);            // then pause for a moment
+    }
+    else                          // otherwise, play the note
+    {
+      tone(buzzerPin, frequency(notes[i]), duration);
+      if(notes[i]=='a' ) {
+        digitalWrite(led1, HIGH);
+        delay(sensorValue); 
+      } else if(notes[i]=='b'){
+        digitalWrite(led2, HIGH);
+        delay(sensorValue); 
+      } else if(notes[i]=='c'){
+        digitalWrite(led3, HIGH);
+        delay(sensorValue);  
+      } else if(notes[i]=='d'){
+        digitalWrite(led4, HIGH);
+        delay(sensorValue);  
+      } else if(notes[i]=='e'){
+        digitalWrite(led5, HIGH);
+        delay(sensorValue); 
+      } else if(notes[i]=='f'){
+        digitalWrite(led6_red, HIGH);
+        digitalWrite(led6_green, LOW);
+        digitalWrite(led6_blue, HIGH);
+        delay(sensorValue);  
+      } else if(notes[i]=='g'){
+        digitalWrite(led6_red, LOW);
+        digitalWrite(led6_green, HIGH);
+        digitalWrite(led6_blue, HIGH);
+        delay(sensorValue);   // USE IF STATEMENTS FOR DIFF SENSOR VALUES
+      }
+      delay(duration);            // wait for tone to finish
+    }
+    delay(tempo/10);              // brief pause between notes
+  }
+  while(true){}
+}
+
+
+int frequency(char note)
+{
+  int i;
+  const int numNotes = 8;  // number of notes we're storing
+  char names[] = {'B', 'c', 'd', 'e', 'f', 'g', 'a', 'b', 'A', 'q', 'z'};
+  int frequencies[] = {493, 554, 587, 659, 739, 783, 880, 987, 220, 2217, 2349};
+ 
+  for (i = 0; i < numNotes; i++)  // Step through the notes
+  {
+    if (names[i] == note)         // Is this the one?
+    {
+      return(frequencies[i]);     // Yes! Return the frequency
+    }
+  }
+  return(0);  // We looked through everything and didn't find it,
+              // but we still need to return a value, so return 0.
+}
 
