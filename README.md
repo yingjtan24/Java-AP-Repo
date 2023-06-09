@@ -1,9 +1,10 @@
 # Java-AP-Repo
-Shopping Cart: The shopping cart is a project focused on using classes, global arrays, accessor and mutator methods. The program has core methods such as getItemName
+Shopping Cart: 
+- The shopping cart is a project focused on using classes, global arrays, accessor and mutator methods. The program has core methods such as getItemName
 getItemPrice, getItemQuantity, calculateTotal, calculateAverage, and displayCart. The shopping cart asks user what and how much of an item they want and generates a shopping cart receipt.
  
 Quiz Project:
-The quiz project was coded on Java Graphics. The Quiz Project focuses on classes such as the question, quiz, and input helper class. The core concepts demonstarted in the quiz projec are accessor and mutator methods as well as classes that are used to acccess and retrieve quesions and correct answers of a short AP Computer Science A quiz. 
+- The quiz project was coded on Java Graphics. The Quiz Project focuses on classes such as the question, quiz, and input helper class. The core concepts demonstarted in the quiz projec are accessor and mutator methods as well as classes that are used to acccess and retrieve quesions and correct answers of a short AP Computer Science A quiz. 
 
 Password Generator I and II
 - The Password Generator project focuses on the Math.random methods and arrays to generate a random password. The method generateRandomPassword generates a random password using the array of letter, symbols, and numbers using Math.random.  
